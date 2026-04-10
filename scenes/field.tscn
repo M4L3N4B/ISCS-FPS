@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dah1jyqkwpj1e"]
 
 [ext_resource type="PackedScene" uid="uid://b2quk1h5x061g" path="res://scenes/GodotRobot3rdPersonShooterFinal.glb" id="1_6pmjc"]
+[ext_resource type="Material" uid="uid://ncqavcinyp6g" path="res://assets/Godot-Made Textures/prototype_texture.tres" id="2_ttalb"]
 
 [node name="Field" type="Node3D" unique_id=589869024]
 
@@ -8,3 +9,16 @@
 
 [node name="Camera3D" type="Camera3D" parent="GodotRobot3rdPersonShooterFinal" unique_id=1830685348]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.7001764, 2.2510002, -1.7158133)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=249973850]
+
+[node name="Box" type="CSGBox3D" parent="CSGCombiner3D" unique_id=154485971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5570679, 0)
+size = Vector3(39, 8.1, 39)
+material = ExtResource("2_ttalb")
+
+[node name="Air" type="CSGBox3D" parent="CSGCombiner3D" unique_id=149007253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.413513, 0)
+operation = 2
+size = Vector3(38, 8, 38)
+material = ExtResource("2_ttalb")
