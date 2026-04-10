@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b2quk1h5x061g"
-path="res://.godot/imported/GodotRobot3rdPersonShooterFinal.glb-12d3bcd50fa135633cb839ad4bd9c30c.scn"
+path="res://.godot/imported/GodotRobot3rdPersonShooterFinal.glb-9dfbca2f815887401bcbf14f899bdd37.scn"
 
 [deps]
 
-source_file="res://scenes/GodotRobot3rdPersonShooterFinal.glb"
-dest_files=["res://.godot/imported/GodotRobot3rdPersonShooterFinal.glb-12d3bcd50fa135633cb839ad4bd9c30c.scn"]
+source_file="res://scenes/sprite_scenes/GodotRobot3rdPersonShooterFinal.glb"
+dest_files=["res://.godot/imported/GodotRobot3rdPersonShooterFinal.glb-9dfbca2f815887401bcbf14f899bdd37.scn"]
 
 [params]
 

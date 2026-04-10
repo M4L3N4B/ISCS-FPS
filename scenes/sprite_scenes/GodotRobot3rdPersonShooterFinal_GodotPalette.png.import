@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dml1rkgytr3wt"
-path.s3tc="res://.godot/imported/GodotRobot3rdPersonShooterFinal_GodotPalette.png-19fc8737c4ebc36d0f04c2222ff5569e.s3tc.ctex"
+path.s3tc="res://.godot/imported/GodotRobot3rdPersonShooterFinal_GodotPalette.png-e99524705a1eb8dc8eef19791ae10b50.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://scenes/GodotRobot3rdPersonShooterFinal_GodotPalette.png"
-dest_files=["res://.godot/imported/GodotRobot3rdPersonShooterFinal_GodotPalette.png-19fc8737c4ebc36d0f04c2222ff5569e.s3tc.ctex"]
+source_file="res://scenes/sprite_scenes/GodotRobot3rdPersonShooterFinal_GodotPalette.png"
+dest_files=["res://.godot/imported/GodotRobot3rdPersonShooterFinal_GodotPalette.png-e99524705a1eb8dc8eef19791ae10b50.s3tc.ctex"]
 
 [params]
 
