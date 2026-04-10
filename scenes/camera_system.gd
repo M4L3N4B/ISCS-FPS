@@ -13,19 +13,23 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	# Show/Hide mouse when hitting "Esc" key
+	# Hide mouse with the "Esc" key
 	if event.is_action_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode( Input.MOUSE_MODE_VISIBLE )
-		else:
-			Input.set_mouse_mode( Input.MOUSE_MODE_CAPTURED )
+		Input.set_mouse_mode( Input.MOUSE_MODE_VISIBLE )
 	
+	# Show mouse by clicking on the screen
+	if event is InputEventMouseButton:
+		Input.set_mouse_mode( Input.MOUSE_MODE_CAPTURED )
+		get_viewport().set_input_as_handled() # Don't allow other actions
+	
+	# Only allow a captured mouse to move
 	if event is InputEventMouseMotion:
-		var mouse_event: Vector2 = event.screen_relative * mouse_sensitivity
-		move_field_of_view(mouse_event)
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			var mouse_event: Vector2 = event.screen_relative * mouse_sensitivity
+			move_field_of_vision(mouse_event)
 
 
-func move_field_of_view(mouse_movement: Vector2) -> void:
+func move_field_of_vision(mouse_movement: Vector2) -> void:
 	# Reset previous movement
 	transform.basis = Basis()
 	character.transform.basis = Basis()
