@@ -7,6 +7,9 @@ const JUMP_VELOCITY = 4.5
 
 var is_moving: bool = false
 
+var bullet = load("res://scenes/bullet.tscn")
+@onready var gunPosition = $CameraSystem/SideSpringArm/BackSpringArm/Camera3D/GunPosition
+
 func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
@@ -38,3 +41,10 @@ func _physics_process(delta: float) -> void:
 			anim.play("2HandAim")
 		
 	move_and_slide()
+	
+	# Shooting Mechanic
+	if Input.is_action_pressed("shoot"):
+		var instance = bullet.instantiate()
+		instance.position = gunPosition.global_position
+		instance.transform.basis = gunPosition.global_transform.basis
+		get_parent().add_child(instance)
