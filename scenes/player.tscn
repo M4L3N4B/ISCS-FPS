@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c61i6x6x7ki2a"]
 
-[ext_resource type="PackedScene" uid="uid://b2quk1h5x061g" path="res://scenes/sprite_scenes/GodotRobot3rdPersonShooterFinal.glb" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://ceiecqqfapxf1" path="res://scenes/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://b0yb4wk604q0q" path="res://scenes/camera_system.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cqigs8caqvb5u" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://d6tlmscg37q4" path="res://scenes/sprite_scenes/GodotSpriteEditable.tscn" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://bma280ukeo6o5" path="res://scripts/camera_system.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cpxiji008awxy" path="res://scripts/reticle.gd" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 radius = 0.6352539
@@ -22,7 +23,7 @@ script = ExtResource("1_g2els")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6322067, 0)
 shape = SubResource("CapsuleShape3D_u8vuu")
 
-[node name="GodotCharacterSprite" parent="." unique_id=658040653 instance=ExtResource("1_3vyb7")]
+[node name="GodotCharacterSprite" parent="." unique_id=658040653 instance=ExtResource("2_qhqgy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraSystem" type="Node3D" parent="." unique_id=1535561156 node_paths=PackedStringArray("character")]
@@ -38,7 +39,34 @@ spring_length = 0.8
 [node name="BackSpringArm" type="SpringArm3D" parent="CameraSystem/SideSpringArm" unique_id=750989545]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.628045e-08, 0, 0.83)
 shape = SubResource("SphereShape3D_dqkch")
-spring_length = 1.8
+spring_length = 1.5
 
 [node name="Camera3D" type="Camera3D" parent="CameraSystem/SideSpringArm/BackSpringArm" unique_id=1893657784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraSystem/SideSpringArm/BackSpringArm/Camera3D" unique_id=845335634]
+collision_mask = 4
+
+[node name="Crosshair" type="Control" parent="." unique_id=1461009497]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Crosshair" unique_id=846366040]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_dqkch")
