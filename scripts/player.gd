@@ -71,10 +71,6 @@ func _shoot(delta: float):
 		var target_point = hit["position"] if hit else ray_end
 
 		var direction = (target_point - gun_position.global_position).normalized()
-		
-		var result: Dictionary = space_state.intersect_ray(query)
-		
-		print(result)	# Debug
 
 		instance.velocity = direction * instance.SPEED
 		
