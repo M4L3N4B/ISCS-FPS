@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://ncqavcinyp6g" path="res://assets/Godot-Made Textures/prototype_texture.tres" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://c61i6x6x7ki2a" path="res://scenes/player.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://enemy_test" path="res://scenes/enemy.tscn" id="3_enemy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ttalb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,3 +42,18 @@ material = ExtResource("1_rwgxs")
 
 [node name="Player" parent="." unique_id=697849929 instance=ExtResource("2_4wyf3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49467826, 0)
+
+[node name="Enemy1" parent="." instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -12)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -12)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -15)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -15)

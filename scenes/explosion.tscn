@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_explosion"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1"]
+
+[node name="Explosion" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_1")
+script = ExtResource("1_explosion")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
