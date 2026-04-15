@@ -7,8 +7,12 @@ const JUMP_VELOCITY = 4.5
 
 var is_moving: bool = false
 
+@export var shooting_range: float = 100.0
+@export var shooting_delay: float = 0.1
+var _shoot_time_gone: float = 0.0
 var bullet = load("res://scenes/bullet.tscn")
-@onready var gunPosition = $CameraSystem/SideSpringArm/BackSpringArm/Camera3D/GunPosition
+@onready var camera = $CameraSystem/SideSpringArm/BackSpringArm/Camera3D
+@onready var gun_position = $GunPosition
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -42,9 +46,38 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
-	# Shooting Mechanic
+	# Shooting Mechanic, starting from here
 	if Input.is_action_pressed("shoot"):
+		_shoot(delta)
+
+func _shoot(delta: float):
+	
+	_shoot_time_gone += delta
+	
+	if _shoot_time_gone >= shooting_delay:
 		var instance = bullet.instantiate()
-		instance.position = gunPosition.global_position
-		instance.transform.basis = gunPosition.global_transform.basis
+		instance.position = gun_position.global_position
 		get_parent().add_child(instance)
+
+		var screen_center = get_viewport().get_visible_rect().size / 2
+		var ray_origin = camera.project_ray_origin(screen_center)
+		var ray_dir = camera.project_ray_normal(screen_center)
+		var ray_end = ray_origin + ray_dir * 1000.0
+
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+		query.exclude = [self]
+		var hit = space_state.intersect_ray(query)
+		var target_point = hit["position"] if hit else ray_end
+
+		var direction = (target_point - gun_position.global_position).normalized()
+
+		instance.velocity = direction * instance.SPEED
+		
+		var timer := Timer.new()
+		timer.wait_time = 5.0		# 5 seconds before removing bullets from scene.
+		timer.one_shot = true
+		timer.connect("timeout", Callable(instance, "queue_free"))
+		instance.add_child(timer)
+		timer.start()
+		_shoot_time_gone = 0.0
